@@ -67,6 +67,10 @@ Cores, fontes e logo seguem a identidade da Unidade EMBRAPII Bioforest: azul ins
 - **Baixar CSV:** exporta a tabela filtrada (abre direto no Excel).
 - **Atualização:** a cada 5 minutos (configurável em `REFRESH_MINUTES`), ao voltar para a aba do navegador se o prazo já venceu, ou no botão "Atualizar agora". Se uma atualização falhar, os últimos dados continuam na tela.
 
+## Publicou uma alteração e o visual não mudou?
+
+O GitHub Pages e o navegador guardam CSS/JS em cache por ~10 minutos. Ao alterar `style.css` ou os `.js`, troque o número `?v=...` nos links do `index.html` (ex.: `?v=20261018b` → `?v=20261019a`) e faça Ctrl+Shift+R. Confira também se as pastas `assets/css`, `assets/img` e `assets/fonts` foram enviadas no commit.
+
 ## Testar localmente
 
 ```bash
