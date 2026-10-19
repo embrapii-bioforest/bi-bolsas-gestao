@@ -22,6 +22,9 @@ window.DASHBOARD_CONFIG = {
   // Intervalo de atualização automática (minutos).
   REFRESH_MINUTES: 5,
 
+  // Linha acima do título (identificação da unidade).
+  SUBTITLE: "Unidade EMBRAPII · Bioforest",
+
   // Título exibido no topo.
   TITLE: "Controle de pagamento de bolsas",
 };

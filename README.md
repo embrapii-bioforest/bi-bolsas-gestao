@@ -8,7 +8,9 @@ Dashboard estático (HTML + CSS + JavaScript, sem servidor) que lê uma planilha
 .
 ├── index.html                 # página do dashboard
 ├── assets/
-│   ├── css/style.css          # estilos (tema claro/escuro)
+│   ├── css/style.css          # estilos e cores da marca (tema claro/escuro)
+│   ├── img/                   # logo Unidade EMBRAPII Bioforest e favicon
+│   ├── fonts/                 # Saira e Nunito Sans (embutidas)
 │   ├── js/config.js           # ⚙️ CONFIGURAÇÃO — ID da planilha, abas, intervalo
 │   ├── js/data.js             # leitura da planilha e normalização dos dados
 │   ├── js/app.js              # filtros, gráficos, tabela, atualização automática
@@ -51,6 +53,10 @@ As abas lidas ficam em `SHEETS` no `config.js` (hoje: `Gestão` e `Equipe_técni
    ```
 3. No repositório: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
 4. O workflow `.github/workflows/pages.yml` publica o site a cada push. O endereço aparece na aba **Actions** e em **Settings → Pages** (algo como `https://SEU_USUARIO.github.io/SEU_REPO/`).
+
+## Identidade visual
+
+Cores, fontes e logo seguem a identidade da Unidade EMBRAPII Bioforest: azul institucional `#0067bd`, azul médio `#3a8ccb` e verde-água `#3bbb9c`, títulos em Saira e texto em Nunito Sans. As cores ficam todas no topo de `assets/css/style.css`; o texto acima do título fica em `SUBTITLE` no `config.js`. Para trocar o logo, substitua `assets/img/logo-bioforest.png`.
 
 ## Uso
 

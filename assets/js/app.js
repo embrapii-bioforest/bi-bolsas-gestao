@@ -138,7 +138,7 @@
       if (!opts || !opts.format) return;
       const { ctx } = chart;
       ctx.save();
-      ctx.font = `500 12px ${css("--font")}`;
+      ctx.font = `600 12px ${css("--font-display")}`;
       ctx.fillStyle = css("--text-2");
       ctx.textBaseline = "middle";
       chart.getDatasetMeta(0).data.forEach((bar, i) => {
@@ -459,10 +459,13 @@
   // ---------------- início ----------------
   try { const t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (_) {}
   $("#title").textContent = CFG.TITLE || "Dashboard";
-  document.title = `${CFG.TITLE || "Dashboard"}`;
+  if (CFG.SUBTITLE != null) $("#eyebrow").textContent = CFG.SUBTITLE;
+  document.title = `${CFG.TITLE || "Dashboard"} · ${CFG.SUBTITLE || ""}`.replace(/ · $/, "");
   $("#foot-min").textContent = CFG.REFRESH_MINUTES || 5;
   $("#demo-banner").hidden = !DEMO;
   readHash();
   bind();
   refresh();
+  // Redesenha os gráficos quando as fontes da marca terminam de carregar.
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => state.records.length && render());
 })();
