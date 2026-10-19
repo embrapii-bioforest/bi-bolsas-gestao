@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bolsas · Dashboard</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%232a78d6'/><rect x='7' y='16' width='4' height='9' rx='1.5' fill='white'/><rect x='14' y='10' width='4' height='15' rx='1.5' fill='white'/><rect x='21' y='6' width='4' height='19' rx='1.5' fill='white'/></svg>">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar__title">
+      <h1 id="title">Controle de pagamento de bolsas</h1>
+      <p class="topbar__meta" id="refresh-status" aria-live="polite">Carregando dados…</p>
+    </div>
+    <div class="topbar__actions">
+      <button class="btn" id="btn-theme" type="button" aria-label="Alternar tema claro/escuro">Tema</button>
+      <button class="btn btn--primary" id="btn-refresh" type="button">Atualizar agora</button>
+    </div>
+  </header>
+
+  <main class="page">
+    <div class="banner banner--error" id="error" hidden></div>
+    <div class="banner banner--info" id="demo-banner" hidden>Modo demonstração: exibindo <code>data/exemplo.csv</code>, não a planilha real.</div>
+
+    <!-- Filtro principal: pessoa -->
+    <section class="card people" aria-labelledby="people-label">
+      <div class="people__head">
+        <h2 id="people-label">Pessoa</h2>
+        <input type="search" id="people-search" placeholder="Buscar pessoa…" aria-label="Buscar pessoa">
+      </div>
+      <div class="chips" id="people-chips" role="group" aria-label="Filtrar por pessoa"></div>
+    </section>
+
+    <!-- Filtros secundários -->
+    <section class="filters" aria-label="Outros filtros">
+      <label>Aba<select id="f-aba"></select></label>
+      <label>Cargo<select id="f-cargo"></select></label>
+      <label>Projeto<select id="f-projeto"></select></label>
+      <label>Status<select id="f-status"></select></label>
+      <label>De<select id="f-from"></select></label>
+      <label>Até<select id="f-to"></select></label>
+      <label>Mês de referência<select id="f-ref"></select></label>
+      <button class="btn btn--ghost" id="btn-clear" type="button">Limpar filtros</button>
+    </section>
+
+    <section class="kpis" id="kpis" aria-label="Indicadores"></section>
+
+    <section class="grid">
+      <article class="card chart-card chart-card--wide">
+        <header class="card__head">
+          <h2 id="chart-monthly-title">Desembolso mensal por pessoa</h2>
+          <p class="muted">Soma dos valores de bolsa em cada mês do período</p>
+        </header>
+        <div class="chart-box"><canvas id="chart-monthly" role="img" aria-label="Gráfico de barras empilhadas do desembolso mensal"></canvas></div>
+      </article>
+
+      <article class="card chart-card">
+        <header class="card__head">
+          <h2 id="chart-pct-title">% do salário bruto comprometido</h2>
+          <p class="muted" id="chart-pct-sub">No mês de referência</p>
+        </header>
+        <div class="chart-box chart-box--auto" id="pct-box"><canvas id="chart-pct" role="img" aria-label="Percentual do salário bruto comprometido por pessoa"></canvas></div>
+      </article>
+
+      <article class="card chart-card">
+        <header class="card__head">
+          <h2>Valor por projeto</h2>
+          <p class="muted">No mês de referência</p>
+        </header>
+        <div class="chart-box chart-box--auto" id="proj-box"><canvas id="chart-proj" role="img" aria-label="Valor por projeto no mês de referência"></canvas></div>
+      </article>
+    </section>
+
+    <section class="card">
+      <header class="card__head card__head--row">
+        <div>
+          <h2>Bolsas</h2>
+          <p class="muted" id="table-sub"></p>
+        </div>
+        <button class="btn btn--ghost" id="btn-csv" type="button">Baixar CSV</button>
+      </header>
+      <div class="table-wrap">
+        <table class="table" id="table">
+          <thead></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <footer class="foot muted">Dados lidos da planilha Google a cada <span id="foot-min">5</span> minutos.</footer>
+  </main>
+
+  <script src="assets/vendor/chart.umd.min.js"></script>
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
